@@ -14,6 +14,27 @@ import { sortData, prettyPrintStat } from "./util";
 import numeral from "numeral";
 import Map from "./Map";
 import "leaflet/dist/leaflet.css";
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyAjvnQo4MVriQeHSTJ36-tv3YXcMMEKYBU",
+  authDomain: "covid-map-347310.firebaseapp.com",
+  projectId: "covid-map-347310",
+  storageBucket: "covid-map-347310.appspot.com",
+  messagingSenderId: "21068366029",
+  appId: "1:21068366029:web:5e1011e37892e080706984",
+  measurementId: "G-8YL99XTDWG",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 const App = () => {
   const [country, setInputCountry] = useState("worldwide");
@@ -52,7 +73,7 @@ const App = () => {
     getCountriesData();
   }, []);
 
-  console.log(casesType);
+  // console.log(casesType);
 
   const onCountryChange = async (e) => {
     const countryCode = e.target.value;
@@ -70,6 +91,8 @@ const App = () => {
         setMapZoom(4);
       });
   };
+
+  console.log("countrydajs", countryInfo);
 
   return (
     <div className="app">
